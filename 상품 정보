@@ -1,0 +1,6 @@
+// 상품 정보를 담는 구조체
+typedef struct {
+    int id;             // 상품 바코드 ID (102, 105, 108)
+    char name[30];      // 상품 이름
+    char location[20];  // 창고 내 보관 구역 위치
+} Item;
