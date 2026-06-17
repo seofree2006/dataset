@@ -25,11 +25,11 @@ project/
  ├── tree.c 
  ├── stack.c
  ├── queue.c
- ├── ui.c
+ ├── function.c
  └── README.md
  
 ## 실행 방법
-gcc main.c struct.c tree.c stack.c queue.c ui.c -o project
+gcc main.c struct.c tree.c stack.c queue.c function.c -o project
 
 ./project
  
