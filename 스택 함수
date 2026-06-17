@@ -1,0 +1,14 @@
+void init_stack(RackStack* s) { s->top = -1; }
+int is_empty_stack(RackStack* s) { return s->top == -1; }
+int is_full_stack(RackStack* s) { return s->top == STACK_SIZE - 1; }
+
+void push(RackStack* s, Item item) {
+    if (is_full_stack(s)) return;
+    s->items[++(s->top)] = item;
+}
+
+Item pop(RackStack* s) {
+    Item empty = {0, "", ""};
+    if (is_empty_stack(s)) return empty;
+    return s->items[(s->top)--];
+}
