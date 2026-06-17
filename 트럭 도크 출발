@@ -1,0 +1,8 @@
+// 트럭 도크 출발
+void dequeue_truck(LinkedQueue* q) {
+    if (is_empty_queue(q)) return;
+    QueueNode* temp = q->front;
+    q->front = q->front->next;
+    if (q->front == NULL) q->rear = NULL;
+    free(temp);
+}
