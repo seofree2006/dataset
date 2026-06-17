@@ -1,0 +1,6 @@
+// 이진 트리 노드 : [상품 위치 찾기] 기능 담당
+typedef struct TreeNode {
+    Item item;
+    struct TreeNode* left;
+    struct TreeNode* right;
+} TreeNode;
