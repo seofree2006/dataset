@@ -11,3 +11,17 @@ void enqueue_order(LinkedQueue* q, Order order) {
         q->rear = new_node;
     }
 }
+
+// 트럭 대기열 진입
+void enqueue_truck(LinkedQueue* q, const char* name) {
+    QueueNode* new_node = (QueueNode*)malloc(sizeof(QueueNode));
+    if (new_node == NULL) return;
+    strcpy(new_node->truck_name, name);
+    new_node->next = NULL;
+    if (is_empty_queue(q)) {
+        q->front = q->rear = new_node;
+    } else {
+        q->rear->next = new_node;
+        q->rear = new_node;
+    }
+}
