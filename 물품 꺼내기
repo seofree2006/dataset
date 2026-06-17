@@ -1,0 +1,52 @@
+// [담당 함수] 목적 물품 꺼내기 (임시 버퍼 스택을 활용한 역순 재배치)
+void extract_item_from_rack(RackStack* rack, int target_id) {
+    RackStack buffer;
+    init_stack(&buffer);
+    int is_found = 0;
+    int i;
+    
+    printf("\n[스택 현황] 현재 선반 적재 상태 (상단 -> 하단): ");
+    for(i = rack->top; i >= 0; i--) {
+        char ko_name[20];
+        get_item_name(rack->items[i].id, ko_name);
+        printf("[%d:%s] ", rack->items[i].id, ko_name);
+    }
+    printf("\n");
+
+    // 목적 물품이 나올 때까지 팝 하여 임시 버퍼 스택에 저장
+    while (!is_empty_stack(rack)) {
+        Item current_item = pop(rack);
+        char ko_name[20];
+        get_item_name(current_item.id, ko_name);
+
+        if (current_item.id == target_id) {
+            printf("[스택 팝] 목표 물품 [%s](ID:%d) 인출 완료.\n", ko_name, current_item.id);
+            is_found = 1;
+            break;
+        } else {
+            printf("[롤백 이동] 위에 막힌 [%s](ID:%d)을 임시 버퍼 스택으로 대피시킵니다.\n", ko_name, current_item.id);
+            push(&buffer, current_item);
+        }
+    }
+
+    if (!is_found) {
+        print_korean("stack_err");
+    }
+
+    // 버퍼 스택의 물건들을 다시 원본 스택으로 푸시하여 원상복구
+    while (!is_empty_stack(&buffer)) {
+        Item rollback_item = pop(&buffer);
+        char ko_name[20];
+        get_item_name(rollback_item.id, ko_name);
+        printf("[롤백 복원] 임시 저장했던 [%s](ID:%d)을 다시 선반에 넣습니다.\n", ko_name, rollback_item.id);
+        push(rack, rollback_item);
+    }
+
+    printf("[스택 현황] 복원 완료된 선반 적재 상태 (상단 -> 하단): ");
+    for(i = rack->top; i >= 0; i--) {
+        char ko_name[20];
+        get_item_name(rack->items[i].id, ko_name);
+        printf("[%d:%s] ", rack->items[i].id, ko_name);
+    }
+    printf("\n");
+}
