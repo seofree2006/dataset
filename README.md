@@ -19,9 +19,9 @@
 - 출하 트럭 대기열
 
 ## 프로젝트 구조
-project/ 
-├── main.c 
-├── struct.c 
+project/
+├── main.c
+├── struct.c
 ├── tree.c 
 ├── stack.c
 ├── queue.c
