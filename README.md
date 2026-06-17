@@ -29,7 +29,7 @@ project/
  └── README.md
  
 ## 실행 방법
-cl main.c struct.c tree.c stack.c queue.c ui.c /Fe:project.exe
+cl main.c struct.c tree.c stack.c queue.c function.c /Fe:project.exe
 
 project.exe
  
