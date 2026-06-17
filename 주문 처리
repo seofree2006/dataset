@@ -1,0 +1,11 @@
+// 주문 처리 완료 (가장 먼저 들어온 주문 인출)
+Order dequeue_order(LinkedQueue* q) {
+    Order empty = {0, 0};
+    if (is_empty_queue(q)) return empty;
+    QueueNode* temp = q->front;
+    Order order = temp->order;
+    q->front = q->front->next;
+    if (q->front == NULL) q->rear = NULL;
+    free(temp);
+    return order;
+}
