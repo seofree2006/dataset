@@ -1,0 +1,2 @@
+void init_queue(LinkedQueue* q) { q->front = q->rear = NULL; }
+int is_empty_queue(LinkedQueue* q) { return q->front == NULL; }
