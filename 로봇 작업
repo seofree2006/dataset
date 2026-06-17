@@ -1,0 +1,28 @@
+// [담당 함수] 로봇 작업 순서 정하기 (주문 처리 루틴)
+void manage_order_queue(LinkedQueue* order_q, TreeNode* bst_root, RackStack* rack) {
+    if (is_empty_queue(order_q)) {
+        print_korean("no_order");
+        return;
+    }
+
+    // 들어온 순서대로 차례대로 하나씩 인출
+    Order current_order = dequeue_order(order_q);
+    printf("\n==================================================\n");
+    printf("[로봇 배정] 주문번호 %d 처리 시작 (선입선출 순서에 의함)\n", current_order.order_id);
+
+    // 이진 트리를 통해 창고 구역 매핑 [상품 위치 찾기]
+    TreeNode* found_node = search_item_location(bst_root, current_order.item_id);
+    
+    if (found_node == NULL) {
+        print_korean("tree_error");
+        return;
+    }
+    
+    char ko_name[20];
+    get_item_name(found_node->item.id, ko_name);
+    char ko_loc[30] = "A구역_선반"; 
+
+    printf("[트리 검색] ID %d 검색 성공 -> 보관 구역: %s (%s)\n", found_node->item.id, ko_loc, ko_name);
+    
+    extract_item_from_rack(rack, current_order.item_id);
+}
