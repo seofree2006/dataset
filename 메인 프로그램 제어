@@ -1,0 +1,72 @@
+int main() {
+    system("chcp 65001 > NUL");
+
+    TreeNode* bst_root = NULL;
+    RackStack warehouse_rack;
+    LinkedQueue order_queue;
+    LinkedQueue truck_queue;
+    
+    init_stack(&warehouse_rack);
+    init_queue(&order_queue);
+    init_queue(&truck_queue);
+
+    // 기초 데이터 생성 및 트리 빌드
+    Item item1 = {105, "Monitor", "Zone_A"};
+    Item item2 = {102, "Keyboard", "Zone_A"};
+    Item item3 = {108, "Mouse", "Zone_A"};
+    
+    bst_root = insert_tree_node(bst_root, item1);
+    bst_root = insert_tree_node(bst_root, item2);
+    bst_root = insert_tree_node(bst_root, item3);
+
+    // 선반(스택) 초기 적재
+    push(&warehouse_rack, item3); 
+    push(&warehouse_rack, item2); 
+    push(&warehouse_rack, item1); 
+
+    // 초기 트럭 대기열 진입
+    enqueue_truck(&truck_queue, "Truck_A");
+    enqueue_truck(&truck_queue, "Truck_B");
+
+    int choice;
+    int order_seq = 1;
+
+    print_korean("title");
+
+    while (1) {
+        print_korean("menu");
+        print_korean("select_menu");
+        
+        if (scanf("%d", &choice) != 1) {
+            while (getchar() != '\n');
+            continue;
+        }
+
+        if (choice == 4) {
+            print_korean("exit");
+            break;
+        }
+
+        switch (choice) {
+            case 1: { // 일반 주문 접수
+                Order new_order;
+                new_order.order_id = order_seq++;
+                print_korean("input_id");
+                scanf("%d", &new_order.item_id);
+                enqueue_order(&order_queue, new_order);
+                printf("[로그] 주문이 정상 접수되어 대기열에 한 줄로 섰습니다. (주문번호: %d)\n", new_order.order_id);
+                break;
+            }
+            case 2: // 로봇 작업 수행
+                manage_order_queue(&order_queue, bst_root, &warehouse_rack);
+                break;
+            case 3: // 트럭 출하도크 관리
+                manage_truck_dock(&truck_queue);
+                break;
+            default:
+                print_korean("wrong_menu");
+        }
+    }
+
+    return 0;
+}
