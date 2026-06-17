@@ -1,0 +1,16 @@
+// 트리 노드 삽입 (초기 창고 세팅용)
+TreeNode* insert_tree_node(TreeNode* root, Item item) {
+    if (root == NULL) {
+        TreeNode* new_node = (TreeNode*)malloc(sizeof(TreeNode));
+        if (new_node != NULL) {
+            new_node->item = item;
+            new_node->left = new_node->right = NULL;
+        }
+        return new_node;
+    }
+    if (item.id < root->item.id)
+        root->left = insert_tree_node(root->left, item);
+    else if (item.id > root->item.id)
+        root->right = insert_tree_node(root->right, item);
+    return root;
+}
