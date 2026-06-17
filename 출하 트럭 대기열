@@ -1,0 +1,26 @@
+// [담당 함수] 출하 트럭 대기열 관리
+void manage_truck_dock(LinkedQueue* truck_q) {
+    printf("\n==================================================\n");
+    if (is_empty_queue(truck_q)) {
+        print_korean("no_truck");
+        return;
+    }
+    
+    printf("[출하 도크] 현재 상차 대기열 순서: ");
+    QueueNode* curr = truck_q->front;
+    while(curr != NULL) {
+        if (strcmp(curr->truck_name, "Truck_A") == 0) printf("[택배사1_A] -> "); 
+        else if (strcmp(curr->truck_name, "Truck_B") == 0) printf("[택배사2_B] -> "); 
+        else printf("[%s] -> ", curr->truck_name);
+        curr = curr->next;
+    }
+    printf("끝\n");
+
+    char ko_truck[30] = "";
+    if (strcmp(truck_q->front->truck_name, "Truck_A") == 0) strcpy(ko_truck, "택배사_A");
+    else if (strcmp(truck_q->front->truck_name, "Truck_B") == 0) strcpy(ko_truck, "택배사_B");
+    else strcpy(ko_truck, truck_q->front->truck_name);
+
+    printf("[출하 선입선출] 먼저 도착한 [%s] 트럭에 물품 상차 후 출발 처리.\n", ko_truck);
+    dequeue_truck(truck_q);
+}
