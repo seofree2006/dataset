@@ -20,13 +20,13 @@
 
 ## 프로젝트 구조
 project/ 
- ├── main.c 
- ├── struct.c 
- ├── tree.c 
- ├── stack.c
- ├── queue.c
- ├── function.c
- └── README.md
+├── main.c 
+├── struct.c 
+├── tree.c 
+├── stack.c
+├── queue.c
+├── function.c
+└── README.md
  
 ## 실행 방법
 cl main.c struct.c tree.c stack.c queue.c function.c /Fe:project.exe
