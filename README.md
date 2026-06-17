@@ -29,9 +29,9 @@ project/
  └── README.md
  
 ## 실행 방법
-gcc main.c struct.c tree.c stack.c queue.c function.c -o project
+cl main.c struct.c tree.c stack.c queue.c ui.c /Fe:project.exe
 
-./project
+project.exe
  
 ## 실행 화면 예시
 물류창고 로봇 시뮬레이터
