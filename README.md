@@ -20,7 +20,6 @@
 
 ## 프로젝트 구조
 project/ 
-
  ├── main.c 
  ├── struct.c 
  ├── tree.c 
