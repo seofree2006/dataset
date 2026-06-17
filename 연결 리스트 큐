@@ -4,3 +4,9 @@ typedef struct QueueNode {
     char truck_name[30];// 트럭 이름
     struct QueueNode* next;
 } QueueNode;
+
+// 연결 리스트 기반의 표준 큐 구조체
+typedef struct {
+    QueueNode* front;   // 대기열의 맨 앞 (인출/출발)
+    QueueNode* rear;    // 대기열의 맨 뒤 (접수/진입)
+} LinkedQueue;
