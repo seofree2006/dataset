@@ -1,0 +1,6 @@
+// 스택 구조체 : [목적 물품 꺼내기] 선반 적재함 담당
+#define STACK_SIZE 5
+typedef struct {
+    Item items[STACK_SIZE];
+    int top;
+} RackStack;
