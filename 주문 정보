@@ -1,0 +1,5 @@
+// 주문 정보를 담는 구조체
+typedef struct {
+    int order_id;       // 주문 순번 고유 번호
+    int item_id;        // 주문한 상품의 바코드 ID
+} Order;
