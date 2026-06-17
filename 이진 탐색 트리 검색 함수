@@ -1,0 +1,8 @@
+// [담당 함수] 물품 바코드ID를 기반으로 이진 탐색 트리를 검색하는 함수
+TreeNode* search_item_location(TreeNode* root, int id) {
+    if (root == NULL || root->item.id == id)
+        return root;
+    if (id < root->item.id)
+        return search_item_location(root->left, id);
+    return search_item_location(root->right, id);
+}
